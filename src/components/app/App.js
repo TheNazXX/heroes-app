@@ -1,36 +1,32 @@
+import {Button, Badge, Stack} from 'react-bootstrap';
+import {connect} from 'react-redux';
+
 import './app.scss';
-import { createStore } from 'redux';
-import {Button} from 'react-bootstrap';
-import {reducer} from '../reducer.js';
-import {inc, dec} from '../actions.js'
 
-
-const {dispatch, subscribe, getState} = createStore(reducer)
-
-const incDispatch = () => dispatch(inc())
-const decDispatch = () => dispatch(dec())
-
-subscribe(() => {
-  updateDiv();
-})
-
-const  App = () => {
-
+const  App = ({counter, inc, dec}) => {
   return (
     <div className="App">
-      <Button onClick={incDispatch} variant="dark">+</Button>
-      <Button onClick={decDispatch} variant="dark">-</Button>
+      <Stack direction='horizontal' gap={3}>
+        <Button onClick={inc} variant="dark">INC</Button>
+        <h3><Badge bg="secondary">{counter}</Badge></h3>
+        <Button onClick={dec} variant="dark">DEC</Button>
+      </Stack>
     </div>
   );
 }
 
-const div = document.getElementById('counter')
-
-function updateDiv(){
-  div.textContent = getState();
+const mapStateToProps = (state) => {
+  return {
+    counter: state.value
+  }
 }
 
-updateDiv();
+const mapDispatchToProps = (dispatch) => {
+  return {
+    inc: () => dispatch({type: 'INC'}),
+    dec: () => dispatch({type: 'DEC'})
+  }
+}
 
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
