@@ -1,32 +1,41 @@
 import {Button, Badge, Stack} from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import {inc, dec} from '../../actions.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './app.scss';
 
-const  App = ({counter, inc, dec}) => {
+const  App = () => {
+
+  const {value} = useSelector(state => state);
+  const dispatch = useDispatch()
+
   return (
     <div className="App">
       <Stack direction='horizontal' gap={3}>
-        <Button onClick={inc} variant="dark">INC</Button>
-        <h3><Badge bg="secondary">{counter}</Badge></h3>
-        <Button onClick={dec} variant="dark">DEC</Button>
+        <Button onClick={() => dispatch(inc())} variant="dark">INC</Button>
+        <h3><Badge bg="secondary">{value}</Badge></h3>
+        <Button onClick={() => dispatch(dec())} variant="dark">DEC</Button>
       </Stack>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    counter: state.value
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     counter: state.value
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    inc: () => dispatch({type: 'INC'}),
-    dec: () => dispatch({type: 'DEC'})
-  }
-}
+// 1) const mapDispatchToProps = (dispatch) => {
+//   return {
+//     inc: () => dispatch({type: 'INC'}),
+//     dec: () => dispatch({type: 'DEC'})
+//   }
+// }
+
+// 2) const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
