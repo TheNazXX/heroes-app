@@ -1,12 +1,6 @@
 {
   "heroes": [
     {
-      "id": 6,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
-    },
-    {
       "id": "a8c97f6a-b490-4786-b477-963240e75081",
       "name": "gegeg",
       "description": "egegege",
@@ -26,10 +20,30 @@
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
+    {
+      "label": "Все",
+      "value": "all",
+      "style": "btn-outline-dark"
+    },
+    {
+      "label": "Огонь",
+      "value": "fire",
+      "style": "btn-danger"
+    },
+    {
+      "label": "Вода",
+      "value": "water",
+      "style": "btn-primary"
+    },
+    {
+      "label": "Ветер",
+      "value": "wind",
+      "style": "btn-success"
+    },
+    {
+      "label": "Земля",
+      "value": "earth",
+      "style": "btn-secondary"
+    }
   ]
 }
