@@ -49,3 +49,16 @@ export const filtersFetchingError = () => {
         type: 'FILTERS_FETCHING_ERROR'
     }
 }
+
+export const changeActiveFilter = (filter) => {
+    return {
+        type: 'CHANGE_ACTIVE_FILTER',
+        payload: filter
+    }
+}
+
+export const updateHeroesByFilter = () => {
+    return {
+        type: 'UPDATE_HEROES_BY_FILTER'
+    }
+}

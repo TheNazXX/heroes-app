@@ -1,21 +1,9 @@
-
-
-// Задача для этого компонента:
-// Реализовать создание нового героя с введенными данными. Он должен попадать
-// в общее состояние и отображаться в списке + фильтроваться
-// Уникальный идентификатор персонажа можно сгенерировать через uiid
-// Усложненная задача:
-// Персонаж создается и в файле json при помощи метода POST
-// Дополнительно:
-// Элементы <option></option> желательно сформировать на базе
-// данных из фильтров
-
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 import { useHttp } from '../../hooks/http.hook'
 import { useDispatch, useSelector } from 'react-redux';
-import { addHero } from '../../actions';
+import { addHero, updateHeroesByFilter } from '../../actions';
 import SpinnerDots from '../spinner/SpinnerDots';
 
 const HeroesAddForm = () => {
@@ -27,7 +15,12 @@ const HeroesAddForm = () => {
     const onSubmit = (values, {resetForm}) => {
         resetForm();
         const newObj = {id: uuidv4(), ...values};
-        request("http://localhost:3001/heroes", 'POST',JSON.stringify(newObj)).then(() => dispatch(addHero(newObj))).catch(() => alert('Что-то пошло не так'));
+        request("http://localhost:3001/heroes", 'POST',JSON.stringify(newObj)).then(() => heroAdded(newObj)).catch(() => alert('Что-то пошло не так'));
+    };
+
+    const heroAdded = (hero) => {
+        dispatch(addHero(hero));
+        dispatch(updateHeroesByFilter());
     };
 
     const renderFilters = (arr) => {

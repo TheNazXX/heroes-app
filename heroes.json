@@ -1,70 +1,52 @@
 {
   "heroes": [
     {
-      "id": "8c3e528b-f23e-4686-a902-29d47d60608d",
-      "name": "FWFWE",
-      "description": "FWFW",
+      "id": "7f3162b2-1657-4038-b4ce-81ae4f21e640",
+      "name": "fwfw",
+      "description": "fwfwfw",
       "element": "water"
     },
     {
-      "id": "ca2420fe-e6ad-4378-84e7-38295f3b6d33",
-      "name": "FWFWFW",
-      "description": "FWFWFWFW",
-      "element": "water"
-    },
-    {
-      "id": "9cacef8f-be4a-4064-bc5a-f5a327a3edea",
-      "name": "FWFWF",
-      "description": "WFWFWF",
-      "element": "fire"
-    },
-    {
-      "id": "1e61a3d0-2cdc-4f79-ab8b-bbc8c5838b59",
-      "name": "FWFWF",
-      "description": "WFWFW",
-      "element": "wind"
-    },
-    {
-      "id": "43635ad1-974e-4882-b8ef-bff8ae2e5f10",
-      "name": "FWFWFW",
-      "description": "FWFWFW",
-      "element": "water"
-    },
-    {
-      "id": "9938d201-e6d9-4df5-9633-fe4b08f8da11",
-      "name": "WFWFW",
-      "description": "FWFWFWFWFW",
+      "id": "afba34df-5418-4693-968e-45944ceb2bb6",
+      "name": "wfwfw",
+      "description": "fwfwf",
       "element": "earth"
     },
     {
-      "id": "1a843bbb-5ca9-4f5d-8beb-fe37d7bbef6c",
-      "name": "WFWFWFW",
-      "description": "FWFWF",
-      "element": "fire"
-    },
-    {
-      "id": "76b70e9d-0517-43f3-97e2-c872c418dc8f",
-      "name": "FWFWF",
-      "description": "WFWFWFW",
-      "element": "water"
-    },
-    {
-      "id": "45858353-1aaa-41ca-90a5-90b72965af0b",
-      "name": "FWFWFW",
-      "description": "FWFW",
+      "id": "578c70bc-1a42-4779-8624-9d4f54e337fb",
+      "name": "wfwfw",
+      "description": "wfwfwfw",
       "element": "wind"
     },
     {
-      "id": "43f9bad9-182d-4cfd-94a6-11ff747d8221",
-      "name": "FWFWF",
-      "description": "WFWFWFWFW",
-      "element": "earth"
-    },
-    {
-      "id": "ecdbf258-4d35-4a46-928a-c0f54f5d7c5e",
+      "id": "3f472de8-cfb8-4943-95c5-b743cf5efb92",
       "name": "fwfwfw",
-      "description": "fwe",
+      "description": "fwfw",
+      "element": "earth"
+    },
+    {
+      "id": "58d4ba87-fe61-4a43-822b-40852af63ab7",
+      "name": "fwfwfw",
+      "description": "fwfwfw",
+      "element": "wind"
+    },
+    {
+      "id": "e45c7a9a-79e8-4eb9-ab68-e342187bf910",
+      "name": "Thorgeg",
+      "description": "gegege",
       "element": "water"
+    },
+    {
+      "id": "991205f0-b3cf-4226-a63d-20dd483cbb9f",
+      "name": "fwfwfwwf",
+      "description": "fwefw",
+      "element": "water"
+    },
+    {
+      "id": "70c62329-f643-4f00-b162-2a58156f39af",
+      "name": "fwfwfwfw",
+      "description": "wfw",
+      "element": "fire"
     }
   ],
   "filters": [

@@ -1,24 +1,17 @@
-
-// Задача для этого компонента:
-// Фильтры должны формироваться на основании загруженных данных
-// Фильтры должны отображать только нужных героев при выборе
-// Активный фильтр имеет класс active
-// Изменять json-файл для удобства МОЖНО!
-// Представьте, что вы попросили бэкенд-разработчика об этом
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import { filtersFetching, filtersFetched, filtersFetchingError} from "../../actions";
+import { filtersFetching, filtersFetched, filtersFetchingError, changeActiveFilter, updateHeroesByFilter} from "../../actions";
 import SpinnerDots from "../spinner/SpinnerDots";
 
 import './heroesFilters.scss';
 
 const HeroesFilters = () => {
 
-    const {filters, filtersLoadingStatus} = useSelector(state => state)
+    const {filters, filtersLoadingStatus, activeFilter} = useSelector(state => state)
     const {request} = useHttp();
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         onRequest();
@@ -28,11 +21,22 @@ const HeroesFilters = () => {
     const onRequest = () => {
         dispatch(filtersFetching());
         request("http://localhost:3001/filters").then(data => dispatch(filtersFetched(data))).catch(() => dispatch(filtersFetchingError()))
-    }
+    };
+
+    const changeFilter = (e) => {
+        const filter = e.target.getAttribute('data-filter');
+        dispatch(changeActiveFilter(filter));
+        dispatch(updateHeroesByFilter());
+    };
 
     const loader = filtersLoadingStatus === 'loading' ? <SpinnerDots /> : null
 
-    const elements = filters.map(({label, value, style}, i) => <button key={i} data-filter={value} className={`btn ${style} ${i === 0 ? 'active' : ''}`}>{label}</button>)
+    const elements = filters.map(({label, value, style}, i) => <button
+        onClick={changeFilter}
+        key={i}
+        data-filter={value}
+        className={`btn ${style} ${value === activeFilter ? 'active' : ''}`}>{label}
+    </button>);
 
     const error = filtersLoadingStatus === 'error' ? <span><b>Что-то пошло не так...</b></span>: null;
 
