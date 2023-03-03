@@ -14,13 +14,15 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 import { useHttp } from '../../hooks/http.hook'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addHero } from '../../actions';
+import SpinnerDots from '../spinner/SpinnerDots';
 
 const HeroesAddForm = () => {
 
     const {request} = useHttp();
     const dispatch = useDispatch();
+    const {filters} = useSelector(state => state);
 
     const onSubmit = (values, {resetForm}) => {
         resetForm();
@@ -28,6 +30,11 @@ const HeroesAddForm = () => {
         request("http://localhost:3001/heroes", 'POST',JSON.stringify(newObj)).then(() => dispatch(addHero(newObj))).catch(() => alert('Что-то пошло не так'));
     };
 
+    const renderFilters = (arr) => {
+        return arr.map(({label, value}) => {
+            return label === 'Все' ? null : <option key={label} value={value}>{label}</option>
+        });
+    };
 
     return (
         <Formik
@@ -78,7 +85,7 @@ const HeroesAddForm = () => {
                                 style={{"height": '130px'}}/>
                         </div>
 
-                        <div className="mb-3">
+                        {filters.length === 0 ? <SpinnerDots/> : <div className="mb-3">
                             <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
                             <Field
                                 as="select"
@@ -87,12 +94,9 @@ const HeroesAddForm = () => {
                                 name="element"
                                 >
                                 <option value=''>Я владею элементом...</option>
-                                <option value="fire">Огонь</option>
-                                <option value="water">Вода</option>
-                                <option value="wind">Ветер</option>
-                                <option value="earth">Земля</option>
+                                {renderFilters(filters)}
                             </Field>
-                        </div>
+                        </div>}
 
                         <button type="submit" className="btn btn-primary">Создать</button>
                     </Form>
