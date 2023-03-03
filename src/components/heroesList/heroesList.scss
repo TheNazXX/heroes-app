@@ -1,0 +1,48 @@
+.heroes{
+  &__list{
+    position: relative;
+  }
+
+  &__item{
+    &-enter {
+      transform: scale(0);
+    } 
+    &-enter-active {
+        transition: all 200ms ease-in;
+        transform: scale(1);
+    }
+    &-exit {
+        opacity: 1;
+        transition: all 250ms ease-in;
+    }
+    &-exit-active {
+        opacity: 0;
+    }
+  }
+
+  &__text{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    &-enter {
+      opacity: 0;
+      z-index: -1;
+    } 
+    &-enter-active {
+        opacity: 1;
+        transition: opacity 1000ms ease-in;
+        z-index: 1;
+    }
+    &-exit {
+        opacity: 1;
+        transition: opacity 100ms ease-in;
+        z-index: 1;
+    }
+    &-exit-active {
+        opacity: 0;
+        z-index: -1;
+    }
+  }
+}

@@ -31,7 +31,9 @@ const HeroesFilters = () => {
     }
 
     const loader = filtersLoadingStatus === 'loading' ? <SpinnerDots /> : null
+
     const elements = filters.map(({label, value, style}, i) => <button key={i} data-filter={value} className={`btn ${style} ${i === 0 ? 'active' : ''}`}>{label}</button>)
+
     const error = filtersLoadingStatus === 'error' ? <span><b>Что-то пошло не так...</b></span>: null;
 
     return (

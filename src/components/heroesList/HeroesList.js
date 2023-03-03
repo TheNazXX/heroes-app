@@ -1,10 +1,12 @@
 import {useHttp} from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
+
+import './heroesList.scss';
 
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
@@ -38,18 +40,28 @@ const HeroesList = () => {
 
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Героев пока нет</h5>
+            return <CSSTransition classNames='heroes__text' timeout={1}>
+                <h5 className="text-center heroes__text">Героев пока нет</h5>
+            </CSSTransition>
         }
 
         return arr.map(({id, ...props}) => {
-            return <HeroesListItem key={id} {...props} onDeleteHero={() => onDeleteHero(id)}/>
+            return (
+            <CSSTransition key={id} classNames='heroes__item' timeout={750}>
+                <HeroesListItem key={id} {...props} onDeleteHero={() => onDeleteHero(id)}/>
+            </CSSTransition>
+            )
         })
     }
 
+
+
     const elements = renderHeroesList(heroes);
     return (
-        <ul>
-            {elements}
+        <ul className='heroes__list'>
+            <TransitionGroup component={null}>
+                {elements}
+            </TransitionGroup>
         </ul>
     )
 }
