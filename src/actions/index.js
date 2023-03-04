@@ -56,9 +56,3 @@ export const changeActiveFilter = (filter) => {
         payload: filter
     }
 }
-
-export const updateHeroesByFilter = () => {
-    return {
-        type: 'UPDATE_HEROES_BY_FILTER'
-    }
-}

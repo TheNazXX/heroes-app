@@ -59,15 +59,13 @@ const reducer = (state = initialState, action) => {
         case 'UPDATE_HEROES_BY_FILTER':
             return {
                 ...state,
-                filteredHeroes: renderHeroesByFilter(state.heroes, state.activeFilter)
+                filteredHeroes: state.activeFilter === 'all' ? state.heroes : state.heroes.filter(({element}) => element === state.activeFilter)
             }
         default: return state
     
     }
 }
 
-const renderHeroesByFilter = (heroes, filter) => {
-    return filter === 'all' ? heroes : heroes.filter(({element}) => element === filter);
-}
+
 
 export default reducer;

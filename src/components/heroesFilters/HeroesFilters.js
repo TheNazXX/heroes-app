@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import { filtersFetching, filtersFetched, filtersFetchingError, changeActiveFilter, updateHeroesByFilter} from "../../actions";
+import { filtersFetching, filtersFetched, filtersFetchingError, changeActiveFilter } from "../../actions";
 import SpinnerDots from "../spinner/SpinnerDots";
 
 import './heroesFilters.scss';
 
 const HeroesFilters = () => {
 
-    const {filters, filtersLoadingStatus, activeFilter} = useSelector(state => state)
+    const {filters, filtersLoadingStatus, activeFilter} = useSelector(state => state.filtersReducer)
     const {request} = useHttp();
     const dispatch = useDispatch();
 
@@ -26,7 +26,6 @@ const HeroesFilters = () => {
     const changeFilter = (e) => {
         const filter = e.target.getAttribute('data-filter');
         dispatch(changeActiveFilter(filter));
-        dispatch(updateHeroesByFilter());
     };
 
     const loader = filtersLoadingStatus === 'loading' ? <SpinnerDots /> : null

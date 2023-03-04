@@ -2,14 +2,21 @@ import {useHttp} from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted, updateHeroesByFilter } from '../../actions';
+import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
 import './heroesList.scss';
 
 const HeroesList = () => {
-    const {filteredHeroes, heroesLoadingStatus} = useSelector(state => state);
+
+    const {activeFilter} = useSelector(state => state.filtersReducer);
+    const {heroesLoadingStatus} = useSelector(state => state.heroesReducer);
+    const filteredHeroes = useSelector(state => {
+        if(activeFilter === 'all')return state.heroesReducer.heroes
+        return state.heroesReducer.heroes.filter(({element}) => element === activeFilter)
+    });
+    
     const dispatch = useDispatch();
     const {request} = useHttp();
 
@@ -24,12 +31,10 @@ const HeroesList = () => {
 
     const heroesOnLoaded = (data) => {
         dispatch(heroesFetched(data));
-        dispatch(updateHeroesByFilter());
     };
 
     const heroWasDeleted = (id) => {
         dispatch(heroDeleted(id));
-        dispatch(updateHeroesByFilter());
     };
 
     const onDeleteHero = (id) => {

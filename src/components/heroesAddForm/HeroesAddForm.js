@@ -3,14 +3,14 @@ import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 import { useHttp } from '../../hooks/http.hook'
 import { useDispatch, useSelector } from 'react-redux';
-import { addHero, updateHeroesByFilter } from '../../actions';
+import { addHero } from '../../actions';
 import SpinnerDots from '../spinner/SpinnerDots';
 
 const HeroesAddForm = () => {
 
     const {request} = useHttp();
     const dispatch = useDispatch();
-    const {filters} = useSelector(state => state);
+    const {filters} = useSelector(state => state.filtersReducer);
 
     const onSubmit = (values, {resetForm}) => {
         resetForm();
@@ -20,7 +20,6 @@ const HeroesAddForm = () => {
 
     const heroAdded = (hero) => {
         dispatch(addHero(hero));
-        dispatch(updateHeroesByFilter());
     };
 
     const renderFilters = (arr) => {
