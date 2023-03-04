@@ -7,19 +7,25 @@ import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
 import './heroesList.scss';
+import { createSelector } from 'reselect';
 
 const HeroesList = () => {
 
-    const {activeFilter} = useSelector(state => state.filtersReducer);
-    const {heroesLoadingStatus} = useSelector(state => state.heroesReducer);
-    const filteredHeroes = useSelector(state => {
-        if(activeFilter === 'all')return state.heroesReducer.heroes
-        return state.heroesReducer.heroes.filter(({element}) => element === activeFilter)
-    });
-    
     const dispatch = useDispatch();
     const {request} = useHttp();
 
+    const filteredHeroesSelector = createSelector(
+        state => state.filtersReducer.activeFilter,
+        state => state.heroesReducer.heroes,
+        (filter, heroes) => {
+            if(filter === 'all')return heroes;
+            return heroes.filter(({element}) => element === filter)
+        }
+    );
+
+    const {heroesLoadingStatus} = useSelector(state => state.heroesReducer);
+    const filteredHeroes = useSelector(filteredHeroesSelector)
+    
     useEffect(() => {
         dispatch(heroesFetching());
         request("http://localhost:3001/heroes")
