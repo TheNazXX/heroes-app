@@ -1,33 +1,21 @@
 {
   "heroes": [
     {
-      "id": "3ccff501-c99d-4574-a221-fb9092d19e03",
-      "name": "dqdqd",
-      "description": "qdqdqdq",
+      "id": "9e599f98-3a16-4c8e-b3c8-33bcfddfb718",
+      "name": "Fire hero",
+      "description": "Something",
       "element": "fire"
     },
     {
-      "id": "ef19dafb-c3a4-4514-8e82-90ea7353e6fa",
-      "name": "dqdq",
-      "description": "dqd",
+      "id": "9a8f1abd-d8d2-46dc-9d08-e26c46c6a729",
+      "name": "Water Hero",
+      "description": "Something",
       "element": "water"
     },
     {
-      "id": "2c9d45a6-443c-4077-8c6b-c85f2754b51f",
-      "name": "dqdqd",
-      "description": "dqdq",
-      "element": "water"
-    },
-    {
-      "id": "d26e9796-308a-4038-848e-4354b0760cb4",
-      "name": "dqdqdq",
-      "description": "dqdq",
-      "element": "earth"
-    },
-    {
-      "id": "f98472ce-1a94-4271-8fab-e2fc17cd7b7c",
-      "name": "dqdqdqqd",
-      "description": "dqdq",
+      "id": "23b739ad-edda-4412-9d2a-73b77030c5a2",
+      "name": "Wind hero",
+      "description": "Something",
       "element": "wind"
     }
   ],

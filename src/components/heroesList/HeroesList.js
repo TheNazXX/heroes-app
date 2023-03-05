@@ -2,7 +2,7 @@ import {useHttp} from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
+import { fetchHeroes, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
@@ -27,11 +27,7 @@ const HeroesList = () => {
     const filteredHeroes = useSelector(filteredHeroesSelector)
     
     useEffect(() => {
-        dispatch('HEROES_FETCHING');
-        request("http://localhost:3001/heroes")
-            .then(data => heroesOnLoaded(data))
-            .catch(() => dispatch(heroesFetchingError()))
-
+        dispatch(fetchHeroes(request));
         // eslint-disable-next-line
     }, []);
 
@@ -44,7 +40,9 @@ const HeroesList = () => {
     };
 
     const onDeleteHero = (id) => {
-        request(`http://localhost:3001/heroes/${id}`, 'DELETE').then(() => heroWasDeleted(id)).catch(() => alert('Что-то пошло не так...'))
+        request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+            .then(() => heroWasDeleted(id))
+            .catch(() => alert('Что-то пошло не так...'))
     };
 
     if (heroesLoadingStatus === "loading") {
@@ -62,7 +60,7 @@ const HeroesList = () => {
 
         return arr.map(({id, ...props}) => {
             return (
-            <CSSTransition key={id} classNames='heroes__item' timeout={750}>
+            <CSSTransition key={id} classNames='heroes__item' timeout={250}>
                 <HeroesListItem key={id} {...props} onDeleteHero={() => onDeleteHero(id)}/>
             </CSSTransition>
             );

@@ -32,12 +32,12 @@
     } 
     &-enter-active {
         opacity: 1;
-        transition: opacity 1000ms ease-in;
+        transition: opacity 100ms ease-in;
         z-index: 1;
     }
     &-exit {
         opacity: 1;
-        transition: opacity 100ms ease-in;
+        transition: opacity 10ms ease-in;
         z-index: 1;
     }
     &-exit-active {
