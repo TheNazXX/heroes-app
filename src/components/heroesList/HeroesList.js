@@ -27,7 +27,7 @@ const HeroesList = () => {
     const filteredHeroes = useSelector(filteredHeroesSelector)
     
     useEffect(() => {
-        dispatch(heroesFetching());
+        dispatch('HEROES_FETCHING');
         request("http://localhost:3001/heroes")
             .then(data => heroesOnLoaded(data))
             .catch(() => dispatch(heroesFetchingError()))
