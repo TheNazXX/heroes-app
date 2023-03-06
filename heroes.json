@@ -17,6 +17,12 @@
       "name": "Wind hero",
       "description": "Something",
       "element": "wind"
+    },
+    {
+      "id": "7c1b7e75-f82d-4463-86f1-af1fb12cb9ce",
+      "name": "egegege",
+      "description": "gegeg",
+      "element": "water"
     }
   ],
   "filters": [
