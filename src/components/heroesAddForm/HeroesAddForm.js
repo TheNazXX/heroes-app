@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 import { useHttp } from '../../hooks/http.hook'
 import { useDispatch, useSelector } from 'react-redux';
-import { addHero } from '../../actions';
+import { heroCreated } from '../../actions';
 import SpinnerDots from '../spinner/SpinnerDots';
 
 const HeroesAddForm = () => {
@@ -19,7 +19,7 @@ const HeroesAddForm = () => {
     };
 
     const heroAdded = (hero) => {
-        dispatch(addHero(hero));
+        dispatch(heroCreated(hero));
     };
 
     const renderFilters = (arr) => {

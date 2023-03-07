@@ -1,21 +1,9 @@
 {
   "heroes": [
     {
-      "id": "9a8f1abd-d8d2-46dc-9d08-e26c46c6a729",
-      "name": "Water Hero",
-      "description": "Something",
-      "element": "water"
-    },
-    {
       "id": "23b739ad-edda-4412-9d2a-73b77030c5a2",
       "name": "Wind hero",
       "description": "Something",
-      "element": "wind"
-    },
-    {
-      "id": "9f161111-1c43-4f91-bec9-65cbca1b7b32",
-      "name": "gegegee",
-      "description": "gege",
       "element": "wind"
     },
     {
@@ -29,6 +17,30 @@
       "name": "fwfwfw",
       "description": "fwfwfwfw",
       "element": "fire"
+    },
+    {
+      "id": "24b18025-7a62-4ea5-ad28-8e3145b0e9d6",
+      "name": "ggegege",
+      "description": "gegege",
+      "element": "fire"
+    },
+    {
+      "id": "a859a1d0-dab3-4b48-a451-2ce4acf7c6a6",
+      "name": "Thor",
+      "description": "thtyjtk",
+      "element": "water"
+    },
+    {
+      "id": "f881490a-8d32-47d0-b82c-02213f148352",
+      "name": "fwfwffwfw",
+      "description": "fwfwfw",
+      "element": "fire"
+    },
+    {
+      "id": "cd8709f1-c780-41cf-8af2-bde34d898a59",
+      "name": "fwfwfw",
+      "description": "fwfw",
+      "element": "wind"
     }
   ],
   "filters": [

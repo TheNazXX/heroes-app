@@ -11,7 +11,7 @@ export const heroesFetching = createAction('HEROES_FETCHING');
 export const heroesFetched = createAction('HEROES_FETCHED');
 export const heroesFetchingError = createAction('HEROES_FETCHING_ERROR');
 export const heroDeleted = createAction('HERO_DELETED');
-export const addHero = createAction('HERO_ADD');
+export const heroCreated = createAction('HERO_CREATERD');
 
 export const filtersFetching = createAction('FILTERS_FETCHING');
 export const filtersFetched = createAction('FILTERS_FETCHED');
