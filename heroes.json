@@ -1,18 +1,6 @@
 {
   "heroes": [
     {
-      "id": "23b739ad-edda-4412-9d2a-73b77030c5a2",
-      "name": "Wind hero",
-      "description": "Something",
-      "element": "wind"
-    },
-    {
-      "id": "24b18025-7a62-4ea5-ad28-8e3145b0e9d6",
-      "name": "ggegege",
-      "description": "gegege",
-      "element": "fire"
-    },
-    {
       "id": "a859a1d0-dab3-4b48-a451-2ce4acf7c6a6",
       "name": "Thor",
       "description": "thtyjtk",
@@ -35,6 +23,12 @@
       "name": "fwefw",
       "description": "fwfwfw",
       "element": "fire"
+    },
+    {
+      "id": "14e67c72-21c2-481d-af08-027c78d3d700",
+      "name": "gegege",
+      "description": "geg",
+      "element": "water"
     }
   ],
   "filters": [

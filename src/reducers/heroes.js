@@ -8,12 +8,16 @@ const initialState = {
 
 const heroesReducer = createReducer(initialState, {
     [heroesFetching]: (state) => {state.heroesLoadingStatus = 'loading'},
+
     [heroesFetchingError]: (state) => {state.heroesLoadingStatus = 'error'},
+
     [heroesFetched]: (state, action) => {
         state.heroes = action.payload;
         state.heroesLoadingStatus = 'idle';
     },
+
     [heroCreated]: (state, action) => {state.heroes.push(action.payload)},
+    
     [heroDeleted]: (state, action) => {state.heroes = state.heroes.filter(elem => elem.id !== action.payload)}
 }, [], state => state);
 

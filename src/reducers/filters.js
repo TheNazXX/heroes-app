@@ -16,8 +16,8 @@ const filtersReducer = createReducer(initialState, {
     },
 
     [filtersFetchingError]: (state) => {state.filtersLoadingStatus = 'error'},
-    
-    [changeActiveFilter]: (state) => {state.activeFilter = action.payloa}
+
+    [changeActiveFilter]: (state, action) => {state.activeFilter = action.payload}
 }, [], state => state);
 
 
