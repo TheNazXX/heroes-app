@@ -7,22 +7,36 @@ const initialState = {
   activeFilter: 'all',
 }
 
-const filtersReducer = createReducer(initialState, builder => {
-    builder
-        .addCase(filtersFetching, (state) => {
-            state.filtersLoadingStatus = 'loading';
-        })
-        .addCase(filtersFetched, (state, action) => {
-            state.filters = action.payload;
-            state.filtersLoadingStatus = 'idle';
-        })
-        .addCase(filtersFetchingError, (state) => {
-            state.filtersLoadingStatus = 'error'
-        })
-        .addCase(changeActiveFilter, (state, action) => {
-            state.activeFilter = action.payload
-        })
-})
+const filtersReducer = createReducer(initialState, {
+    [filtersFetching]: (state) => {state.filtersLoadingStatus = 'loading'},
+
+    [filtersFetched]: (state, action) => {
+        state.filters = action.payload;
+        state.filtersLoadingStatus = 'idle';
+    },
+
+    [filtersFetchingError]: (state) => {state.filtersLoadingStatus = 'error'},
+    
+    [changeActiveFilter]: (state) => {state.activeFilter = action.payloa}
+}, [], state => state);
+
+
+// const filtersReducer = createReducer(initialState, builder => {
+//     builder
+//         .addCase(filtersFetching, (state) => {
+//             state.filtersLoadingStatus = 'loading';
+//         })
+//         .addCase(filtersFetched, (state, action) => {
+//             state.filters = action.payload;
+//             state.filtersLoadingStatus = 'idle';
+//         })
+//         .addCase(filtersFetchingError, (state) => {
+//             state.filtersLoadingStatus = 'error'
+//         })
+//         .addCase(changeActiveFilter, (state, action) => {
+//             state.activeFilter = action.payload
+//         })
+// })
 
 // const filtersReducer = (state = initialState, action) => {
 //   switch (action.type) {
