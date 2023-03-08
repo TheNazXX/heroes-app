@@ -1,10 +1,26 @@
 import { createAction } from "@reduxjs/toolkit";
 
+// FAKE SERVER // 
+
+// export const fetchHeroes = (request) => (dispatch) => {
+//     dispatch(heroesFetching());
+//     request("http://localhost:3001/heroes")
+//         .then((data) => dispatch(heroesFetched(data)))
+//         .catch(() => dispatch(heroesFetchingError))
+// }
+
 export const fetchHeroes = (request) => (dispatch) => {
     dispatch(heroesFetching());
-    request("http://localhost:3001/heroes")
-        .then((data) => dispatch(heroesFetched(data)))
-        .catch(() => dispatch(heroesFetchingError))
+    setTimeout(() => {
+        dispatch(heroesFetched())
+    }, 1500)
+};
+
+export const fetchFilters = () => (dispatch) => {
+    dispatch(filtersFetching());
+    setTimeout(() => {
+        dispatch(filtersFetched())
+    }, 1500)
 }
 
 export const heroesFetching = createAction('HEROES_FETCHING');

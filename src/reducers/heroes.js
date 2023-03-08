@@ -2,7 +2,24 @@ import { createReducer } from "@reduxjs/toolkit";
 import { heroesFetching, heroesFetched, heroesFetchingError, heroCreated, heroDeleted } from "../actions";
 
 const initialState = {
-  heroes: [],
+  heroes: [{
+    id: "Морской Герой",
+    name: "Some name",
+    description: "Some descr",
+    element: "water"
+  },
+  {
+    id: "Огненый Герой",
+    name: "Some name",
+    description: "Some descr",
+    element: "fire"
+  },
+  {
+    id: "Герой Ветра",
+    name: "Some name",
+    description: "Some descr",
+    element: "wind"
+  }],
   heroesLoadingStatus: 'idle',
 };
 
@@ -11,8 +28,7 @@ const heroesReducer = createReducer(initialState, {
 
     [heroesFetchingError]: (state) => {state.heroesLoadingStatus = 'error'},
 
-    [heroesFetched]: (state, action) => {
-        state.heroes = action.payload;
+    [heroesFetched]: (state) => {
         state.heroesLoadingStatus = 'idle';
     },
 

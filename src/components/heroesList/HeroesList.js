@@ -5,9 +5,9 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { fetchHeroes, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
+import { createSelector } from 'reselect';
 
 import './heroesList.scss';
-import { createSelector } from 'reselect';
 
 const HeroesList = () => {
 
@@ -31,18 +31,20 @@ const HeroesList = () => {
         // eslint-disable-next-line
     }, []);
 
-    const heroesOnLoaded = (data) => {
-        dispatch(heroesFetched(data));
-    };
+    // const heroWasDeleted = (id) => {
+    //     dispatch(heroDeleted(id));
+    // };
 
-    const heroWasDeleted = (id) => {
-        dispatch(heroDeleted(id));
-    };
+    // FAKE SERVER //
+
+    // const onDeleteHero = (id) => {
+    //     request(`http://localhost:3001/heroes/${id}`, 'DELETE')
+    //         .then(() => heroWasDeleted(id))
+    //         .catch(() => alert('Что-то пошло не так...'))
+    // };
 
     const onDeleteHero = (id) => {
-        request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-            .then(() => heroWasDeleted(id))
-            .catch(() => alert('Что-то пошло не так...'))
+        dispatch(heroDeleted(id));
     };
 
     if (heroesLoadingStatus === "loading") {

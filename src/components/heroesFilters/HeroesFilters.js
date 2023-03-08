@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHttp } from "../../hooks/http.hook";
-import { filtersFetching, filtersFetched, filtersFetchingError, changeActiveFilter } from "../../actions";
+import { filtersFetching, filtersFetched, filtersFetchingError, changeActiveFilter, fetchFilters } from "../../actions";
 import SpinnerDots from "../spinner/SpinnerDots";
 
 import './heroesFilters.scss';
@@ -12,16 +12,18 @@ const HeroesFilters = () => {
     const {request} = useHttp();
     const dispatch = useDispatch();
 
-
     useEffect(() => {
-        onRequest();
+        dispatch(fetchFilters(request))
+        // onRequest();
         // eslint-disable-next-line
     }, []);
 
-    const onRequest = () => {
-        dispatch(filtersFetching());
-        request("http://localhost:3001/filters").then(data => dispatch(filtersFetched(data))).catch(() => dispatch(filtersFetchingError()))
-    };
+    // FAKE SERVER //
+
+    // const onRequest = () => {
+    //     dispatch(filtersFetching());
+    //     request("http://localhost:3001/filters").then(data => dispatch(filtersFetched(data))).catch(() => dispatch(filtersFetchingError()))
+    // };
 
     const changeFilter = (e) => {
         const filter = e.target.getAttribute('data-filter');
@@ -29,15 +31,16 @@ const HeroesFilters = () => {
     };
 
     const loader = filtersLoadingStatus === 'loading' ? <SpinnerDots /> : null
+    const error = filtersLoadingStatus === 'error' ? <span><b>Что-то пошло не так...</b></span>: null;
 
-    const elements = filters.map(({label, value, style}, i) => <button
+    const elements = !(loader || error) ? filters.map(({label, value, style}, i) => <button
         onClick={changeFilter}
         key={i}
         data-filter={value}
         className={`btn ${style} ${value === activeFilter ? 'active' : ''}`}>{label}
-    </button>);
+    </button>) : null;
 
-    const error = filtersLoadingStatus === 'error' ? <span><b>Что-то пошло не так...</b></span>: null;
+
 
     return (
         <div className="card shadow-lg mt-4">

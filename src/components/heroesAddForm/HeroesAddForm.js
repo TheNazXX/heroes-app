@@ -10,23 +10,35 @@ const HeroesAddForm = () => {
 
     const {request} = useHttp();
     const dispatch = useDispatch();
-    const {filters} = useSelector(state => state.filtersReducer);
+    const {filters, filtersLoadingStatus} = useSelector(state => state.filtersReducer);
+
+
+    // FAKE SERVER //
+
+    // const onSubmit = (values, {resetForm}) => {
+    //     resetForm();
+    //     const newObj = {id: uuidv4(), ...values};
+    //     request("http://localhost:3001/heroes", 'POST',JSON.stringify(newObj)).then(() => heroAdded(newObj)).catch(() => alert('Что-то пошло не так'));
+    // };
+
+    // const heroAdded = (hero) => {
+    //     dispatch(heroCreated(hero));
+    // };
 
     const onSubmit = (values, {resetForm}) => {
         resetForm();
         const newObj = {id: uuidv4(), ...values};
-        request("http://localhost:3001/heroes", 'POST',JSON.stringify(newObj)).then(() => heroAdded(newObj)).catch(() => alert('Что-то пошло не так'));
+        dispatch(heroCreated(newObj))
     };
 
-    const heroAdded = (hero) => {
-        dispatch(heroCreated(hero));
-    };
 
     const renderFilters = (arr) => {
         return arr.map(({label, value}) => {
             return label === 'Все' ? null : <option key={label} value={value}>{label}</option>
         });
     };
+
+    const error = filtersLoadingStatus === 'error' ? <div className='mb-2'><b>Что-то пошло не так...</b></div> : null;
 
     return (
         <Formik
@@ -77,7 +89,7 @@ const HeroesAddForm = () => {
                                 style={{"height": '130px'}}/>
                         </div>
 
-                        {filters.length === 0 ? <SpinnerDots/> : <div className="mb-3">
+                        {error ? error : filtersLoadingStatus === 'loading' ? <SpinnerDots/> : <div className="mb-3">
                             <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
                             <Field
                                 as="select"

@@ -2,7 +2,33 @@ import { createReducer } from "@reduxjs/toolkit"
 import { filtersFetching, filtersFetched, filtersFetchingError, changeActiveFilter } from "../actions"
 
 const initialState = {
-  filters: [],
+  filters: [
+    {
+      label: "Все",
+      value: "all",
+      style: "btn-outline-dark"
+    },
+    {
+      label: "Огонь",
+      value: "fire",
+      style: "btn-danger"
+    },
+    {
+      label: "Вода",
+      value: "water",
+      style: "btn-primary"
+    },
+    {
+      label: "Ветер",
+      value: "wind",
+      style: "btn-success"
+    },
+    {
+      label: "Земля",
+      value: "earth",
+      style: "btn-secondary"
+    }
+  ],
   filtersLoadingStatus: 'idle',
   activeFilter: 'all',
 }
@@ -10,8 +36,7 @@ const initialState = {
 const filtersReducer = createReducer(initialState, {
     [filtersFetching]: (state) => {state.filtersLoadingStatus = 'loading'},
 
-    [filtersFetched]: (state, action) => {
-        state.filters = action.payload;
+    [filtersFetched]: (state) => {
         state.filtersLoadingStatus = 'idle';
     },
 
