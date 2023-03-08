@@ -9,7 +9,7 @@ import { createAction } from "@reduxjs/toolkit";
 //         .catch(() => dispatch(heroesFetchingError))
 // }
 
-export const fetchHeroes = (request) => (dispatch) => {
+export const fetchHeroes = () => (dispatch) => {
     dispatch(heroesFetching());
     setTimeout(() => {
         dispatch(heroesFetched())

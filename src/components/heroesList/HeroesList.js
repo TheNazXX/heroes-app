@@ -27,13 +27,9 @@ const HeroesList = () => {
     const filteredHeroes = useSelector(filteredHeroesSelector)
     
     useEffect(() => {
-        dispatch(fetchHeroes(request));
+        dispatch(fetchHeroes());
         // eslint-disable-next-line
     }, []);
-
-    // const heroWasDeleted = (id) => {
-    //     dispatch(heroDeleted(id));
-    // };
 
     // FAKE SERVER //
 
@@ -42,6 +38,11 @@ const HeroesList = () => {
     //         .then(() => heroWasDeleted(id))
     //         .catch(() => alert('Что-то пошло не так...'))
     // };
+
+    // const heroWasDeleted = (id) => {
+    //    dispatch(heroDeleted(id));
+    // };
+
 
     const onDeleteHero = (id) => {
         dispatch(heroDeleted(id));
